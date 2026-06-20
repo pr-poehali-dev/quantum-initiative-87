@@ -5,6 +5,7 @@ import { WorkSection } from "@/components/sections/work-section"
 import { ServicesSection } from "@/components/sections/services-section"
 import { AboutSection } from "@/components/sections/about-section"
 import { ContactSection } from "@/components/sections/contact-section"
+import { TeamSection } from "@/components/sections/team-section"
 import { MagneticButton } from "@/components/magnetic-button"
 import { useRef, useEffect, useState } from "react"
 
@@ -77,7 +78,7 @@ export default function Index() {
       const deltaX = touchStartX.current - touchEndX
 
       if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 50) {
-        if (deltaY > 0 && currentSection < 4) {
+        if (deltaY > 0 && currentSection < 5) {
           scrollToSection(currentSection + 1)
         } else if (deltaY < 0 && currentSection > 0) {
           scrollToSection(currentSection - 1)
@@ -147,7 +148,7 @@ export default function Index() {
         const scrollLeft = scrollContainerRef.current.scrollLeft
         const newSection = Math.round(scrollLeft / sectionWidth)
 
-        if (newSection !== currentSection && newSection >= 0 && newSection <= 4) {
+        if (newSection !== currentSection && newSection >= 0 && newSection <= 5) {
           setCurrentSection(newSection)
         }
 
@@ -223,11 +224,11 @@ export default function Index() {
             <span className="absolute h-2.5 w-2.5 animate-ping rounded-full bg-green-400/70" />
             <span className="relative h-2.5 w-2.5 rounded-full bg-green-400" />
           </div>
-          <span className="font-sans text-xl font-semibold tracking-tight text-foreground">Пульс города</span>
+          <span className="font-sans text-xl font-semibold tracking-tight text-foreground">Coliseum</span>
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
-          {["Сейчас", "Афиша", "Форматы", "О нас", "Контакты"].map((item, index) => (
+          {["Главная", "Афиша", "Форматы", "О нас", "Команда", "Контакты"].map((item, index) => (
             <button
               key={item}
               onClick={() => scrollToSection(index)}
@@ -261,13 +262,6 @@ export default function Index() {
         {/* Hero Section */}
         <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-6 pb-16 pt-24 md:px-12 md:pb-24">
           <div className="max-w-3xl">
-            <div className="mb-4 inline-flex items-center gap-2 animate-in fade-in slide-in-from-bottom-4 rounded-full border border-green-400/30 bg-foreground/15 px-4 py-1.5 backdrop-blur-md duration-700">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute h-2 w-2 animate-ping rounded-full bg-green-400/70" />
-                <span className="relative h-2 w-2 rounded-full bg-green-400" />
-              </span>
-              <p className="font-mono text-xs text-foreground/90">Сейчас в городе активно 47 событий</p>
-            </div>
             <h1 className="mb-6 animate-in fade-in slide-in-from-bottom-8 font-sans text-6xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 md:text-7xl lg:text-8xl">
               <span className="text-balance">
                 Живое расписание города
@@ -305,7 +299,21 @@ export default function Index() {
         <WorkSection />
         <ServicesSection />
         <AboutSection scrollToSection={scrollToSection} />
+        <TeamSection />
         <ContactSection />
+      </div>
+
+      {/* Live badge — правый нижний угол */}
+      <div
+        className={`fixed bottom-6 right-6 z-50 transition-opacity duration-1000 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+      >
+        <div className="inline-flex items-center gap-2 rounded-full border border-green-400/30 bg-black/40 px-3 py-1.5 backdrop-blur-md">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute h-2 w-2 animate-ping rounded-full bg-green-400/70" />
+            <span className="relative h-2 w-2 rounded-full bg-green-400" />
+          </span>
+          <p className="font-mono text-[11px] text-foreground/80">47 событий активно сейчас</p>
+        </div>
       </div>
 
       <style>{`
