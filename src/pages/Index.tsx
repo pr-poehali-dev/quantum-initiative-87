@@ -220,10 +220,11 @@ export default function Index() {
           onClick={() => scrollToSection(0)}
           className="flex items-center gap-2 transition-transform hover:scale-105"
         >
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-foreground/15 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-foreground/25">
-            <span className="absolute h-2.5 w-2.5 animate-ping rounded-full bg-green-400/70" />
-            <span className="relative h-2.5 w-2.5 rounded-full bg-green-400" />
-          </div>
+          <img
+            src="https://cdn.poehali.dev/projects/6016f0bc-61da-482c-b75a-af0ada201067/bucket/22973a8d-5070-4b90-8642-bfc0e54d9bff.png"
+            alt="Coliseum"
+            className="h-10 w-10 object-contain"
+          />
           <span className="font-sans text-xl font-semibold tracking-tight text-foreground">Coliseum</span>
         </button>
 
