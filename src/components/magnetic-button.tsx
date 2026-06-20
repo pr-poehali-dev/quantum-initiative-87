@@ -5,7 +5,7 @@ interface MagneticButtonProps {
   children: React.ReactNode
   className?: string
   variant?: "primary" | "secondary" | "ghost"
-  size?: "default" | "lg"
+  size?: "sm" | "default" | "lg"
   onClick?: () => void
 }
 
@@ -56,6 +56,7 @@ export function MagneticButton({
   }
 
   const sizes = {
+    sm: "px-4 py-2 text-xs",
     default: "px-6 py-2.5 text-sm",
     lg: "px-8 py-3.5 text-base",
   }
